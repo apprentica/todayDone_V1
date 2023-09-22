@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('todo.master')
 @section('content')
 @section('title') | Create Todo @endsection
@@ -32,3 +33,4 @@
 </div>
 
 @endsection
+</x-app-layout>
