@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('todos', TodoController::class)
+Route::resource('todo', TodoController::class)
     ->only(['index','create','store','show','edit','update','destroy']);
    // ->middleware(['auth','verified']);
 
