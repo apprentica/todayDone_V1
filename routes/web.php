@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('todos', TodoController::class)
+    ->only(['index','create','store','show','edit','update','destroy']);
+   // ->middleware(['auth','verified']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
