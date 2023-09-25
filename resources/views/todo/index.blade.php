@@ -1,10 +1,14 @@
 <x-app-layout>
 @extends('todo.master')
 @section('content')
-
+<style>
+    tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+</style>
 <div class="row">
     <div class="col-xl-12 text-end">
-        <a href="{{ route('todo.create') }}" class="btn btn-primary"> Add Todo </a>
+        <a href="{{ route('todo.create') }}" class="btn btn-default"> Add Todo </a>
     </div>
 </div>
 
@@ -38,10 +42,9 @@
     <table class="table table-striped">
         <thead class="bg-secondary text-light">
             <tr >
-                <th>Id</th>
                 <th width="20%">Title</th>
-                <th width="45%">Description</th>
-                <th width="15%">Completed</th>
+                <th width="30%">Description</th>
+                <th width="20%">Completed</th>
                 <th width="20%">Action</th>
             <tr>
         </thead>
@@ -49,28 +52,27 @@
         <tbody>
             @forelse ($todos as $todo)
                 <tr>
-                    <td>{{ $todo->id }}</td>
                     <td>{{ $todo->title }}</td>
                     <td>{{ $todo->description }}</td>
                     <td>{{ $todo->is_completed == 0? 'No' : 'Yes' }}</td>
                     <td>
                         <form action="{{ route('todo.destroy', $todo->id) }}" method="post">
                             @csrf
-                            <a href="{{ route('todo.show', $todo->id) }}" title="View" class="btn btn-sm btn-info">
+                            <a href="{{ route('todo.show', $todo->id) }}" title="View" class="btn btn-sm btn-default">
                                 View
                             </a>
-                            <a href="{{ route('todo.edit', $todo->id) }}" title="Edit" class="btn btn-sm btn-success">
+                            <a href="{{ route('todo.edit', $todo->id) }}" title="Edit" class="btn btn-sm btn-default">
                                 Edit </a>
 
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure?');" title="Delete" class="btn btn-sm btn-danger"> Delete </button>
+                            <button type="submit" onclick="return confirm('Are you sure?');" title="Delete" class="btn btn-sm btn-default"> Delete </button>
                         </form>
                     </td>
                 </tr>
             @empty
                 <tr>
                     <td colspan="5">
-                        <p class="text-danger text-center fw-bold"> No todos found! </p>
+                        <p class="text-default text-center fw-bold"> Click add Todo to get Today Done! </p>
                     </td>
                 </tr>
             @endforelse

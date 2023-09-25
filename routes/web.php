@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::resource('todo', TodoController::class)
@@ -26,7 +26,7 @@ Route::resource('todo', TodoController::class)
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('auth.login');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
