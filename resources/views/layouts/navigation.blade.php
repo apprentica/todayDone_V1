@@ -15,9 +15,13 @@
                     <x-nav-link :href="route('todo.index')" :active="request()->routeIs('todo.index')">
                         {{ __('To Be Done') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('todo.done')" :active="request()->routeIs('todo.done')">
+                        {{ __('Done') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('profile.update')" :active="request()->routeIs('profile')">
                         {{ __('Profile') }}
                     </x-nav-link>
+
                 </div>
             </div>
 

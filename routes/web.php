@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\ProfileController;
+use GuzzleHttp\Middleware;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +21,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('todo', TodoController::class)
-    ->only(['index','create','store','show','edit','update','destroy']);
-   // ->middleware(['auth','verified']);
 
+Route::get('/done', 'App\Http\Controllers\TodoController@done')->name('todo.done');
+
+Route::resource('todo', TodoController::class)
+    ->only(['index','create','store','show','edit','update','destroy'])
+    ->middleware(['auth','verified']);
 
 Route::get('/dashboard', function () {
     return view('auth.login');

@@ -43,8 +43,8 @@
         <thead class="bg-secondary text-light">
             <tr >
                 <th width="20%">Title</th>
-                <th width="30%">Description</th>
-                <th width="20%">Completed</th>
+                <th width="25%">Description</th>
+                <th width="30%">Completed (Update to move to Done page)</th>
                 <th width="20%">Action</th>
             <tr>
         </thead>

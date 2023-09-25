@@ -16,8 +16,22 @@ class TodoController extends Controller
     public function index()
     {
         try {
-            $todos = Todo::all();
+            $todos = Todo::where('is_completed', '0')->get();
             return view('todo.index', compact('todos'));
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+
+    }
+
+    /**
+     *  Display completed items.
+     */
+    public function done()
+    {
+        try {
+            $dones = Todo::where('is_completed', '1')->get();
+            return view('todo.done', compact('dones'));
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
