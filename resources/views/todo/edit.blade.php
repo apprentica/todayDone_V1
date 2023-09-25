@@ -27,7 +27,7 @@
                     <div class="form-group my-3">
                         <label for="completed"> Completed </label>
                         <select class="form-control" name="is_completed" id="is_completed">
-                            <option value="1" {{ $todo->is_completed == 0 ? 'selected' : '' }}> Yes </option>
+                            <option value="1" {{ $todo->is_completed == 1 ? 'selected' : '' }}> Yes </option>
                             <option value="0" {{ $todo->is_completed == 0 ? 'selected' : '' }}> No </option>
                         </select>
                     </div>

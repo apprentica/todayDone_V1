@@ -52,7 +52,7 @@
                     <td>{{ $todo->id }}</td>
                     <td>{{ $todo->title }}</td>
                     <td>{{ $todo->description }}</td>
-                    <td>{{ $todo->is_completed = 1 ? 'Yes' : 'No' }}</td>
+                    <td>{{ $todo->is_completed == 0? 'No' : 'Yes' }}</td>
                     <td>
                         <form action="{{ route('todo.destroy', $todo->id) }}" method="post">
                             @csrf
