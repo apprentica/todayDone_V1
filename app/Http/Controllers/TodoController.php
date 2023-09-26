@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Todo;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,7 @@ class TodoController extends Controller
     public function index()
     {
         try {
-            $todos = Todo::where('is_completed', '0')->get();
+            $todos = Todo::where('is_completed', '0')->get()->where('user_id', auth()->user()->id);
             return view('todo.index', compact('todos'));
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -30,7 +31,7 @@ class TodoController extends Controller
     public function done()
     {
         try {
-            $dones = Todo::where('is_completed', '1')->get();
+            $dones = Todo::where('is_completed', '1')->get()->where('user_id', auth()->user()->id);
             return view('todo.done', compact('dones'));
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -51,10 +52,12 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
             $todo = Todo::create([
                 'title' => $request->title,
-                'description' => $request->description
+                'description' => $request->description,
+                'user_id' => auth()->user()->id
             ]);
 
             if ($todo) {
@@ -105,7 +108,7 @@ class TodoController extends Controller
         try {
             if ($todo) {
                 $todo->delete();
-                return redirect()->route('todo.index')->with('success', 'Todo list deleted successfully!');
+                return redirect()->back()->with('success', 'Todo list deleted successfully!');
             }
             return back()->with('error', 'Todo list not found!');
         } catch (Exception $e) {
